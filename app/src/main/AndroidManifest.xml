@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="es.esy.kinketkuena.pillowfix">
+
+    <uses-permission android:name="com.weaverprojects.gpstest.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".list.list_syahkuala" />
+        <activity android:name=".isiform.form" />
+        <activity android:name=".list.list_kutaraja" />
+        <activity android:name=".list.list_luengbata" />
+        <activity android:name=".list.list_ulekareng" />
+        <activity android:name=".list.list_meuraxa" />
+        <activity android:name=".list.list_kutaalam" />
+        <activity android:name=".list.list_jayabaru" />
+        <activity android:name=".list.list_bandaraya" />
+        <activity android:name=".detail.detail_bandaraya" />
+        <activity android:name=".detail.detail_jayabaru" />
+        <activity android:name=".detail.detail_kutaalam" />
+        <activity android:name=".detail.detail_kutaraja" />
+        <activity android:name=".detail.detail_luengbata" />
+        <activity android:name=".detail.detail_meuraxa" />
+        <activity android:name=".detail.detail_syahkuala" />
+        <activity android:name=".detail.detail_ulekareng"></activity>
+    </application>
+
+</manifest>
