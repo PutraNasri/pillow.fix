@@ -230,7 +230,8 @@
                     android:id="@+id/button9"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center_horizontal"
-                    android:backgroundTint="#91dfa7" />
+                    android:backgroundTint="#91dfa7"
+                    android:onClick="coklokasi" />
                 <Button
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="fill_parent"
