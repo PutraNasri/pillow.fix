@@ -39,7 +39,8 @@
         <activity android:name=".detail.detail_luengbata" />
         <activity android:name=".detail.detail_meuraxa" />
         <activity android:name=".detail.detail_syahkuala" />
-        <activity android:name=".detail.detail_ulekareng"></activity>
+        <activity android:name=".detail.detail_ulekareng" />
+        <activity android:name=".Maps"></activity>
     </application>
 
 </manifest>

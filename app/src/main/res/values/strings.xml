@@ -4,6 +4,7 @@
     <string name="title_section2">Maps</string>
     <string name="title_section3">Tambah</string>
     <string-array name="perr">
+        <item>Harian</item>
         <item>Bulanan</item>
         <item>Tahunan</item>
     </string-array>

@@ -1,13 +1,19 @@
 package es.esy.kinketkuena.pillowfix.list;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -28,6 +34,7 @@ public class list_syahkuala extends AppCompatActivity implements ListView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_syahkuala);
+
         listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(this);
         getJSON();
@@ -39,7 +46,7 @@ public class list_syahkuala extends AppCompatActivity implements ListView.OnItem
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(list_syahkuala.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(list_syahkuala.this,"Mengambil Data","Wait...",false,false);
             }
 
             @Override
@@ -61,6 +68,7 @@ public class list_syahkuala extends AppCompatActivity implements ListView.OnItem
         gj.execute();
     }
     private void showEmployee(){
+
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
         try {
@@ -71,10 +79,13 @@ public class list_syahkuala extends AppCompatActivity implements ListView.OnItem
                 JSONObject jo = result.getJSONObject(i);
                 String id = jo.getString(config.TAG_ID);
                 String name = jo.getString(config.TAG_NAME);
+                String alamat = jo.getString(config.TAG_ALAMAT);
 
                 HashMap<String,String> employees = new HashMap<>();
                 employees.put(config.TAG_ID,id);
                 employees.put(config.TAG_NAME,name);
+                employees.put(config.TAG_ALAMAT,alamat);
+
                 list.add(employees);
             }
 
@@ -84,10 +95,11 @@ public class list_syahkuala extends AppCompatActivity implements ListView.OnItem
 
         ListAdapter adapter = new SimpleAdapter(
                 list_syahkuala.this, list, R.layout.list_filter,
-                new String[]{config.TAG_ID,config.TAG_NAME},
-                new int[]{R.id.id, R.id.name});
+                new String[]{config.TAG_NAME,config.TAG_ALAMAT},
+                new int[]{R.id.name, R.id.alamat});
 
         listView.setAdapter(adapter);
+
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

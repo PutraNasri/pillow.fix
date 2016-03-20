@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.graphics.Bitmap;
 import android.Manifest;
@@ -44,10 +45,11 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
     private EditText editTextalamat;
     private EditText editTextharga;
     private EditText editTextdeskripsi;
-    private EditText editTextlokasi;
+    private TextView editTextlokasi;
     private ImageView imageViewfoto;
     private Spinner spinnerdaerah, spinnerper;
     public static final int REQUEST_CAPTURE = 1;
+
 
 
 
@@ -66,7 +68,7 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         editTextalamat = (EditText) findViewById(R.id.editTextalamat);
         editTextharga = (EditText) findViewById(R.id.editTextharga);
         editTextdeskripsi = (EditText) findViewById(R.id.editTextdeskripsi);
-        editTextlokasi = (EditText) findViewById(R.id.editTextlokasi);
+        editTextlokasi = (TextView) findViewById(R.id.editTextlokasi);
         imageViewfoto = (ImageView) findViewById(R.id.imageViewfoto);
         spinnerdaerah = (Spinner) findViewById(R.id.spinnerdaerah);
         List<String> item = new ArrayList<String>();
@@ -162,8 +164,7 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
     }
     public void coklokasi(View v) {
 //proses pengambilan lokasi gps
-        int LOCATION_REFRESH_TIME = 0;
-        int LOCATION_REFRESH_DISTANCE = 100;
+
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -175,14 +176,18 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_REFRESH_TIME, LOCATION_REFRESH_DISTANCE, mLocationListener);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,35000, 10, mLocationListener);
     }
     private final LocationListener mLocationListener = new LocationListener() {
+        ProgressDialog loading;
+
         @Override
         public void onLocationChanged(Location location) {
+            loading = ProgressDialog.show(form.this, "Mengirim...", "Wait...", false, false);
             System.out.println("onLocationChanged");
             mLastLocation = location;
             editTextlokasi.setText("Latitude:" + String.valueOf(location.getLatitude()) + "," + "Longitude:" + String.valueOf(location.getLongitude()));
+            loading.dismiss();
         }
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -192,10 +197,13 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         public void onProviderEnabled(String provider) {
             System.out.println("onProviderEnabled");
         }
+
         @Override
         public void onProviderDisabled(String provider) {
-            System.out.println("onProviderDisabled");
+            System.out.println("onProvidermati");
         }
+
+
     };
     //////////////////////////////////////////////////////////////////
     @Override
@@ -219,5 +227,6 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
     @Override
     public void onProviderDisabled(String provider) {
     }
+
 
 }
