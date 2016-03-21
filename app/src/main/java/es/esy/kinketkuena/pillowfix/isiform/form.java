@@ -45,7 +45,8 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
     private EditText editTextalamat;
     private EditText editTextharga;
     private EditText editTextdeskripsi;
-    private TextView editTextlokasi;
+    private TextView editTextlokasiLAT;
+    private TextView editTextlokasiLONG;
     private ImageView imageViewfoto;
     private Spinner spinnerdaerah, spinnerper;
     public static final int REQUEST_CAPTURE = 1;
@@ -68,7 +69,8 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         editTextalamat = (EditText) findViewById(R.id.editTextalamat);
         editTextharga = (EditText) findViewById(R.id.editTextharga);
         editTextdeskripsi = (EditText) findViewById(R.id.editTextdeskripsi);
-        editTextlokasi = (TextView) findViewById(R.id.editTextlokasi);
+        editTextlokasiLAT = (TextView) findViewById(R.id.editTextlokasiLAT);
+        editTextlokasiLONG = (TextView) findViewById(R.id.editTextlokasLONG);
         imageViewfoto = (ImageView) findViewById(R.id.imageViewfoto);
         spinnerdaerah = (Spinner) findViewById(R.id.spinnerdaerah);
         List<String> item = new ArrayList<String>();
@@ -102,7 +104,8 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         final String harga = editTextharga.getText().toString().trim();
         final String jangka = spinnerper.getSelectedItem().toString().trim();
         final String deskripsi = editTextdeskripsi.getText().toString().trim();
-        final String lokasi = editTextlokasi.getText().toString().trim();
+        final String lokasiLAT = editTextlokasiLAT.getText().toString().trim();
+        final String lokasiLONG = editTextlokasiLONG.getText().toString().trim();
         final String foto = Base64.encodeToString(fotoo, Base64.DEFAULT);
 
         class AddEmployee extends AsyncTask<Void, Void, String> {
@@ -131,7 +134,8 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
                 params.put(config.KEY_EMP_HARGA, harga);
                 params.put(config.KEY_EMP_JANGKA, jangka);
                 params.put(config.KEY_EMP_DESKRIPSI, deskripsi);
-                params.put(config.KEY_EMP_LOKASI, lokasi);
+                params.put(config.KEY_EMP_LOKASILAT, lokasiLAT);
+                params.put(config.KEY_EMP_LOKASILONG, lokasiLONG);
                 params.put(config.KEY_EMP_FOTO, foto);
 
                 RequestHandler rh = new RequestHandler();
@@ -186,7 +190,8 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
             loading = ProgressDialog.show(form.this, "Mengirim...", "Wait...", false, false);
             System.out.println("onLocationChanged");
             mLastLocation = location;
-            editTextlokasi.setText("Latitude:" + String.valueOf(location.getLatitude()) + "," + "Longitude:" + String.valueOf(location.getLongitude()));
+            editTextlokasiLAT.setText(String.valueOf(location.getLatitude()));
+            editTextlokasiLONG.setText(String.valueOf(location.getLongitude()));
             loading.dismiss();
         }
         @Override

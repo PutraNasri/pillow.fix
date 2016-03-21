@@ -18,7 +18,8 @@ public class config {
     public static final String KEY_EMP_HARGA = "harga";
     public static final String KEY_EMP_JANGKA = "jangka";
     public static final String KEY_EMP_DESKRIPSI = "deskripsi";
-    public static final String KEY_EMP_LOKASI = "lokasi";
+    public static final String KEY_EMP_LOKASILAT = "lokasiLAT";
+    public static final String KEY_EMP_LOKASILONG = "lokasiLONG";
     public static final String KEY_EMP_FOTO = "foto";
 
 
@@ -38,7 +39,8 @@ public class config {
     public static final String TAG_JANGKA = "jangka";
     public static final String TAG_ALAMAT = "alamat";
     public static final String TAG_FOTO = "foto";
-    public static final String TAG_LOKASI = "lokasi";
+    public static final String TAG_LOKASILAT = "lokasiLAT";
+    public static final String TAG_LOKASILONG = "lokasiLONG";
 
 
 

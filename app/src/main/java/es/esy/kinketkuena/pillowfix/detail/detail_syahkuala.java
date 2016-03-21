@@ -2,35 +2,18 @@ package es.esy.kinketkuena.pillowfix.detail;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import es.esy.kinketkuena.pillowfix.Maps;
 import es.esy.kinketkuena.pillowfix.R;
 import es.esy.kinketkuena.pillowfix.RequestHandler;
@@ -47,7 +30,8 @@ public class detail_syahkuala extends AppCompatActivity {
     private TextView editTextalamat;
     private ImageView image;
     private String id;
-
+    String lokasiLAT="";
+    String lokasiLONG="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +60,7 @@ public class detail_syahkuala extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(detail_syahkuala.this,"Menampilkan Data...","Wait...",false,false);
+                loading = ProgressDialog.show(detail_syahkuala.this,"Menampilkan Data...","Loading...",false,false);
             }
             @Override
             protected void onPostExecute(String s) {
@@ -109,7 +93,8 @@ public class detail_syahkuala extends AppCompatActivity {
             String harga = c.getString(config.TAG_HARGA);
             String jangka = c.getString(config.TAG_JANGKA);
             String alamat = c.getString(config.TAG_ALAMAT);
-            String lokasi = c.getString(config.TAG_LOKASI);
+            lokasiLAT = c.getString(config.TAG_LOKASILAT);
+            lokasiLONG = c.getString(config.TAG_LOKASILONG);
 
 
             ///////////////proses mengubah binner blob ke file bitmap//////////////
@@ -126,8 +111,7 @@ public class detail_syahkuala extends AppCompatActivity {
             editTextalamat.setText(alamat);
             editTextdeskripsi.setText(deskripsi);
 
-            HashMap<String,Object> employees = new HashMap<>();
-            employees.put(config.TAG_LOKASI, lokasi);
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -137,8 +121,10 @@ public class detail_syahkuala extends AppCompatActivity {
 
 
     public void maps(View view)  {
-
-
+        Intent intent = new Intent(this, Maps.class);
+        intent.putExtra("loklat",lokasiLAT);
+        intent.putExtra("loklong",lokasiLONG);
+        startActivity(intent);
     }
 
 

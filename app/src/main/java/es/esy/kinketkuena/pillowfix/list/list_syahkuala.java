@@ -1,19 +1,13 @@
 package es.esy.kinketkuena.pillowfix.list;
 
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -27,7 +21,7 @@ import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
 import es.esy.kinketkuena.pillowfix.detail.detail_syahkuala;
 
-public class list_syahkuala extends AppCompatActivity implements ListView.OnItemClickListener{
+public class list_syahkuala extends Activity implements ListView.OnItemClickListener{
     private ListView listView;
     private String JSON_STRING;
     @Override
@@ -46,7 +40,7 @@ public class list_syahkuala extends AppCompatActivity implements ListView.OnItem
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(list_syahkuala.this,"Mengambil Data","Wait...",false,false);
+                loading = ProgressDialog.show(list_syahkuala.this,"Mengambil Data","Loading...",false,false);
             }
 
             @Override
