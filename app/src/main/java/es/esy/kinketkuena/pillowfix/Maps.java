@@ -74,10 +74,10 @@ public class Maps extends Activity implements OnMapReadyCallback {
                 return;
             }
             gMaps.setMyLocationEnabled(true);
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(5.553670, 95.318832)).zoom(10).build();
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(lok1, lok2)).zoom(12).build();
 
             gMaps.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-            gMaps.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 500, null);
+            //gMaps.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 500, null);
 
 
         } catch (Exception e) {
