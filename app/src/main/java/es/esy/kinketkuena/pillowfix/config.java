@@ -8,8 +8,9 @@ public class config {
     public static final String URL_ADD="http://kinketkuena.esy.es/addEmp.php";
     public static final String URL_GET_ALL = "http://kinketkuena.esy.es/getAllEmp.php";
     public static final String URL_GET_EMP = "http://kinketkuena.esy.es/getEmp.php?id=";
-    public static final String URL_UPDATE_EMP = "http://192.168.94.1/Android/CRUD/updateEmp.php";
-    public static final String URL_DELETE_EMP = "http://192.168.94.1/Android/CRUD/deleteEmp.php?id=";
+    public static final String URL_GET_ALL_LOCATION="http://kinketkuena.esy.es/getAlllocation.php";
+   // public static final String URL_UPDATE_EMP = "http://192.168.94.1/Android/CRUD/updateEmp.php";
+    //public static final String URL_DELETE_EMP = "http://192.168.94.1/Android/CRUD/deleteEmp.php?id=";
 
     //Kunci untuk melakukan pemanggilan data dari scrip
     public static final String KEY_EMP_ID = "id";

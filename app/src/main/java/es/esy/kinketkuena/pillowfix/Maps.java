@@ -44,6 +44,7 @@ public class Maps extends Activity implements OnMapReadyCallback {
         setContentView(R.layout.activity_maps);
 
         Intent intent = getIntent();
+        String nama = intent.getStringExtra("nama");
         String lokasilat = intent.getStringExtra("loklat");
         String lokasilong = intent.getStringExtra("loklong");
 
@@ -57,10 +58,10 @@ public class Maps extends Activity implements OnMapReadyCallback {
         try {
             initializeMaps();
             gMaps.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.red))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
                     .position(new LatLng(lok1, lok2))
                     .visible(true)
-                    .title("LOKASI TEST"));
+                    .title(nama));
 
 
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -76,8 +77,8 @@ public class Maps extends Activity implements OnMapReadyCallback {
             gMaps.setMyLocationEnabled(true);
             CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(lok1, lok2)).zoom(12).build();
 
-            gMaps.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-            //gMaps.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 500, null);
+
+            gMaps.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 100, null);
 
 
         } catch (Exception e) {

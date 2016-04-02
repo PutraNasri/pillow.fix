@@ -32,6 +32,7 @@ public class detail_syahkuala extends AppCompatActivity {
     private String id;
     String lokasiLAT="";
     String lokasiLONG="";
+    String name="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,7 @@ public class detail_syahkuala extends AppCompatActivity {
             JSONObject c = result.getJSONObject(0);
             String id = c.getString(config.TAG_ID);
             String foto = c.getString(config.TAG_FOTO);
-            String name = c.getString(config.TAG_NAME);
+            name = c.getString(config.TAG_NAME);
             String pemilik = c.getString(config.TAG_DESG);
             String nohp = c.getString(config.TAG_SAL);
             String nik = c.getString(config.TAG_NIK);
@@ -122,6 +123,7 @@ public class detail_syahkuala extends AppCompatActivity {
 
     public void maps(View view)  {
         Intent intent = new Intent(this, Maps.class);
+        intent.putExtra("nama",name);
         intent.putExtra("loklat",lokasiLAT);
         intent.putExtra("loklong",lokasiLONG);
         startActivity(intent);

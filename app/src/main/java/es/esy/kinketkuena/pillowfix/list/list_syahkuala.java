@@ -1,13 +1,19 @@
 package es.esy.kinketkuena.pillowfix.list;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -21,9 +27,11 @@ import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
 import es.esy.kinketkuena.pillowfix.detail.detail_syahkuala;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class list_syahkuala extends Activity implements ListView.OnItemClickListener{
     private ListView listView;
     private String JSON_STRING;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +39,12 @@ public class list_syahkuala extends Activity implements ListView.OnItemClickList
 
         listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(this);
+
+
         getJSON();
+
+
+
     }
     private void getJSON(){
         class GetJSON extends AsyncTask<Void,Void,String>{
@@ -79,7 +92,6 @@ public class list_syahkuala extends Activity implements ListView.OnItemClickList
                 employees.put(config.TAG_ID,id);
                 employees.put(config.TAG_NAME,name);
                 employees.put(config.TAG_ALAMAT,alamat);
-
                 list.add(employees);
             }
 
@@ -94,6 +106,8 @@ public class list_syahkuala extends Activity implements ListView.OnItemClickList
 
         listView.setAdapter(adapter);
 
+
+
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -103,4 +117,9 @@ public class list_syahkuala extends Activity implements ListView.OnItemClickList
         intent.putExtra(config.EMP_ID,empId);
         startActivity(intent);
     }
+
+    //public void refles(View view) {
+      //  getJSON();
+    //}
+
 }
