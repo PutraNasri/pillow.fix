@@ -60,7 +60,7 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         setContentView(R.layout.activity_form);
         Button clik = (Button) findViewById(R.id.cokfoto);
         if (!hasCamera()) {
-            clik.setEnabled(false);
+            clik.setEnabled(true);
         }
         editTextnamakost = (EditText) findViewById(R.id.editTextnamakost);
         editTextnamapemilik = (EditText) findViewById(R.id.editTextnamapemilik);

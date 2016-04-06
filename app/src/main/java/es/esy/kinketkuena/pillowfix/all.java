@@ -31,11 +31,11 @@ public class all extends Fragment  {
 
     public all() {
     }
-   GoogleMap gMaps;
-   private GoogleApiClient client;
+    GoogleMap gMaps;
+    private GoogleApiClient client;
     private String JSON_STRING;
 
-String lokasiLAT="";
+    String lokasiLAT="";
     String lokasiLONG="";
     MapView mMapView;
 
@@ -153,13 +153,15 @@ String lokasiLAT="";
         // create marker
         MarkerOptions marker = new MarkerOptions().position(
                 new LatLng(lok1, lok2)).title("Maps testing all");
+        MarkerOptions marker2 = new MarkerOptions().position(
+                new LatLng(lok1, lok2)).title("Maps testing dua");
 
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory
-                .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+        marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
 
         // adding marker
         gMaps.addMarker(marker);
+        gMaps.addMarker(marker2);
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(17.385044, 78.486671)).zoom(12).build();
         gMaps.animateCamera(CameraUpdateFactory

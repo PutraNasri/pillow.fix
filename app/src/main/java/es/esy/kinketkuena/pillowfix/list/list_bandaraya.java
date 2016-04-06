@@ -1,11 +1,12 @@
 package es.esy.kinketkuena.pillowfix.list;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import es.esy.kinketkuena.pillowfix.R;
 
-public class list_bandaraya extends AppCompatActivity {
+public class list_bandaraya extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

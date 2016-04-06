@@ -5,18 +5,10 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <FrameLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="94dp"
-            android:layout_height="35dp"
-            android:text="Road"
-            android:id="@+id/rood"
-            android:onClick="rood" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -24,8 +16,27 @@
             android:layout_height="35dp"
             android:text="Satellite"
             android:id="@+id/sat"
-            android:onClick="sat" />
-    </LinearLayout>
+            android:onClick="sat"
+            android:layout_gravity="left|top" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="94dp"
+            android:layout_height="35dp"
+            android:text="HOME"
+            android:id="@+id/button12"
+            android:onClick="home"
+            android:layout_gravity="right|top" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="94dp"
+            android:layout_height="35dp"
+            android:text="Road"
+            android:id="@+id/rood"
+            android:onClick="rood"
+            android:layout_gravity="center_horizontal|top" />
+    </FrameLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

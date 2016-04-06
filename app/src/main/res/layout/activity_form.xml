@@ -26,6 +26,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="DATA PEMILIK"
+                android:id="@+id/textView11"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#6977f7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Nama Kost"
                 android:id="@+id/textView3"
                 android:textSize="15dp" />
@@ -128,6 +138,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="DATA RUMAH"
+                android:id="@+id/textView13"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#6977f7"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Alamat"
                 android:id="@+id/textView7"
                 android:textSize="15dp" />
@@ -136,20 +157,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:id="@+id/editTextalamat"
-                android:textStyle="bold|italic"
+                android:textStyle="italic"
                 android:textAlignment="inherit"
                 android:background="#bbbdf0"
-                android:hyphenationFrequency="normal"
-                android:textColorHint="#ffffff"
+                android:textColorHint="#000000"
                 android:textIsSelectable="false"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:hint="jalan" />
+                android:layout_marginRight="10dp" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -217,31 +236,34 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <FrameLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp">
+
                 <Button
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="170dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:text="Ambil Lokasi"
                     android:id="@+id/button9"
                     android:layout_marginLeft="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:backgroundTint="#91dfa7"
-                    android:onClick="coklokasi" />
+                    android:layout_gravity="right|center_vertical"
+                    android:onClick="coklokasi"
+                    android:background="#91dfa7" />
+
                 <Button
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="fill_parent"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:text="Ambil Foto"
                     android:id="@+id/cokfoto"
                     android:layout_marginRight="10dp"
-                    android:backgroundTint="#90d2df"
-                    android:onClick="cokfotoile" />
-            </LinearLayout>
+                    android:onClick="cokfotoile"
+                    android:layout_gravity="left|center_vertical"
+                    android:background="#90d2df" />
+            </FrameLayout>
 
 
             <LinearLayout

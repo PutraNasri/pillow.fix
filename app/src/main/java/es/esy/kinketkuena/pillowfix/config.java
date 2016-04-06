@@ -9,6 +9,13 @@ public class config {
     public static final String URL_GET_ALL = "http://kinketkuena.esy.es/getAllEmp.php";
     public static final String URL_GET_EMP = "http://kinketkuena.esy.es/getEmp.php?id=";
     public static final String URL_GET_ALL_LOCATION="http://kinketkuena.esy.es/getAlllocation.php";
+    public static final String URL_GET_ALL_KUTARAJA="http://kinketkuena.esy.es/getAllKutaraja.php";
+    public static final String URL_GET_KUTARAJA="http://kinketkuena.esy.es/getKutaraja.php";
+    public static final String URL_GET_ALL_ULEKARENG="http://kinketkuena.esy.es/getAllUlekareng.php";
+    public static final String URL_GET_ULEKARENG="http://kinketkuena.esy.es/getUlekareng.php";
+
+
+
    // public static final String URL_UPDATE_EMP = "http://192.168.94.1/Android/CRUD/updateEmp.php";
     //public static final String URL_DELETE_EMP = "http://192.168.94.1/Android/CRUD/deleteEmp.php?id=";
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import es.esy.kinketkuena.pillowfix.list.list_bandaraya;
 import es.esy.kinketkuena.pillowfix.list.list_jayabaru;
 import es.esy.kinketkuena.pillowfix.list.list_kutaalam;
 import es.esy.kinketkuena.pillowfix.list.list_kutaraja;
@@ -35,6 +36,7 @@ public class home extends Fragment {
         Button meuraxa = (Button) rootview.findViewById(R.id.button5);
         Button kutaalam = (Button) rootview.findViewById(R.id.button6);
         Button jayabaru = (Button) rootview.findViewById(R.id.button7);
+        Button bandaraya = (Button) rootview.findViewById(R.id.button8);
 
 
         syahkuala.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +85,13 @@ public class home extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), list_jayabaru.class);
+                startActivity(intent);
+            }
+        });
+        bandaraya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), list_bandaraya.class);
                 startActivity(intent);
             }
         });

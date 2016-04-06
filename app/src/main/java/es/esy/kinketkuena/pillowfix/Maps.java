@@ -106,7 +106,14 @@ public class Maps extends Activity implements OnMapReadyCallback {
     }
 
     public void sat(View view) {
+
         gMaps.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+    }
+
+    public void home(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
 

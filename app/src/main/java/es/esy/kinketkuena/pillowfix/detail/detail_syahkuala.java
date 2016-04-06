@@ -1,5 +1,6 @@
 package es.esy.kinketkuena.pillowfix.detail;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import es.esy.kinketkuena.pillowfix.R;
 import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
 
-public class detail_syahkuala extends AppCompatActivity {
+public class detail_syahkuala extends Activity {
     private TextView editTextid;
     private TextView editTextnamakost;
     private TextView editTextnamapemilik;
