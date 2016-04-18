@@ -1,15 +1,24 @@
 package es.esy.kinketkuena.pillowfix;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -31,19 +40,23 @@ public class all extends Fragment  {
 
     public all() {
     }
+
     GoogleMap gMaps;
     private GoogleApiClient client;
     private String JSON_STRING;
 
-    String lokasiLAT="";
-    String lokasiLONG="";
+    String lokasiLAT = "";
+    String lokasiLONG = "";
     MapView mMapView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all, container, false);
         mMapView = (MapView) view.findViewById(R.id.mapslbs);
+        mMapView.setClickable(true);
         mMapView.onCreate(savedInstanceState);
+
+
 
 
         getJSON();
@@ -76,14 +89,15 @@ public class all extends Fragment  {
         mMapView.onLowMemory();
     }
 
-    private void getJSON(){
-        class GetJSON extends AsyncTask<Void,Void,String> {
+    private void getJSON() {
+        class GetJSON extends AsyncTask<Void, Void, String> {
 
             ProgressDialog loading;
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(getActivity(),"Mengambil Data","Loading...",false,false);
+                loading = ProgressDialog.show(getActivity(), "Mengambil Data", "Loading...", false, false);
             }
 
             @Override
@@ -104,6 +118,7 @@ public class all extends Fragment  {
         GetJSON gj = new GetJSON();
         gj.execute();
     }
+
     private void showEmployee() {
 
         JSONObject jsonObject = null;
@@ -145,27 +160,45 @@ public class all extends Fragment  {
         // latitude and longitude
 
 
-        Double lok1 = 17.385044;
 
+        Double lok1 = 5.553753;
 
-        Double lok2 = 78.486671;
+        Double lok2 = 95.317601;
 
         // create marker
+/*
         MarkerOptions marker = new MarkerOptions().position(
-                new LatLng(lok1, lok2)).title("Maps testing all");
+                new LatLng(lok1, lok2)).title("Maps testing all").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+        gMaps.addMarker(marker);
         MarkerOptions marker2 = new MarkerOptions().position(
-                new LatLng(lok1, lok2)).title("Maps testing dua");
-
+                new LatLng(5.553753, 95.317601)).title("Maps testing dua").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+        gMaps.addMarker(marker2);
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+
 
         // adding marker
-        gMaps.addMarker(marker);
-        gMaps.addMarker(marker2);
+
+*/
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        gMaps.setMyLocationEnabled(true);
+
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(17.385044, 78.486671)).zoom(12).build();
+                .target(new LatLng(lok1, lok2)).zoom(15).build();
         gMaps.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
 
     }
+
+
+
 }

@@ -36,30 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Nama Kost"
-                android:id="@+id/textView3"
-                android:textSize="15dp" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="45dp"
-                android:id="@+id/editTextnamakost"
-                android:textStyle="bold|italic"
-                android:textAlignment="inherit"
-                android:background="#bbbdf0"
-                android:hyphenationFrequency="normal"
-                android:textColorHint="#ffffff"
-                android:textIsSelectable="false"
-                android:textColor="#ffffff"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Nama Pemilik"
                 android:id="@+id/textView4"
                 android:textSize="15dp" />
@@ -106,7 +82,8 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#bbbdf0" />
+                android:background="#bbbdf0"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,7 +109,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -144,6 +122,31 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="#6977f7"
                 android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Nama Rumah"
+                android:id="@+id/textView3"
+                android:textSize="15dp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:id="@+id/editTextnamakost"
+                android:textStyle="bold|italic"
+                android:textAlignment="inherit"
+                android:background="#bbbdf0"
+                android:hyphenationFrequency="normal"
+                android:textColorHint="#ffffff"
+                android:textIsSelectable="false"
+                android:textColor="#ffffff"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,7 +207,8 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:inputType="number" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -295,7 +299,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#edcccc" />
+                android:src="@drawable/camera" />
 
             <Button
             style="?android:attr/buttonStyleSmall"

@@ -7,13 +7,8 @@ import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -26,7 +21,6 @@ import es.esy.kinketkuena.pillowfix.R;
 import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
 import es.esy.kinketkuena.pillowfix.detail.detail_syahkuala;
-import es.esy.kinketkuena.pillowfix.R;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class list_kutaraja extends Activity implements ListView.OnItemClickListener{

@@ -1,14 +1,19 @@
 package es.esy.kinketkuena.pillowfix.isiform;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,18 +28,26 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import es.esy.kinketkuena.pillowfix.R;
 import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
 
-public class form extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
+public class form extends Activity implements GoogleApiClient.ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
     private Location mLastLocation;
     public LocationManager mLocationManager;
@@ -88,6 +101,7 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerdaerah.setAdapter(adapter);
     }
+
     //Adding an employee
     private void addEmployee() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -111,17 +125,20 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         class AddEmployee extends AsyncTask<Void, Void, String> {
 
             ProgressDialog loading;
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(form.this, "Mengirim...", "Wait...", false, false);
             }
+
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(form.this, s, Toast.LENGTH_LONG).show();
             }
+
             @Override
             protected String doInBackground(Void... v) {
                 HashMap<String, String> params = new HashMap<>();
@@ -146,17 +163,168 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         AddEmployee ae = new AddEmployee();
         ae.execute();
     }
+
     public void onClick(View v) {
         //pengeceka nanti di buat disini
-        addEmployee();
+
+
+        if (editTextnamapemilik.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Nama Pemilik tidak boleh kosong")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+
+        if (editTextnohp.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Contact tidak boleh kosong")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+
+        if (editTextnik.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("NIK Pemilik tidak boleh kosong")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+
+        if (editTextnamakost.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Nama Rumah tidak boleh kosong")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+        if (editTextalamat.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Alamat Rumah tidak boleh kosong")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+        if (spinnerdaerah.getSelectedItem().toString().equals("Letak Daerah Kost")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Daerah belum di pilih")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+
+        if (editTextharga.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Harga Sewa Rumah tidak boleh kosong")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+        if (spinnerper.getSelectedItem().toString().equals("Tenggang Waktu")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Tenggang waktu sewa belum di pilih")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        }
+        if (editTextdeskripsi.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Deskripsi tentang Rumah tidak boleh kosong")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        } else if (editTextlokasiLAT.getText().toString().equals("")) {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Anda belum mengambil lokasi")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
+        } else {
+            addEmployee();
+        }
+
     }
+
     public boolean hasCamera() {
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
+
     public void cokfotoile(View v) {
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(i, REQUEST_CAPTURE);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CAPTURE && requestCode == RESULT_OK) ;
@@ -166,6 +334,7 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
             imageViewfoto.setImageBitmap(photo);
         }
     }
+
     public void coklokasi(View v) {
 //proses pengambilan lokasi gps
 
@@ -183,16 +352,16 @@ public class form extends AppCompatActivity implements GoogleApiClient.Connectio
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,35000, 10, mLocationListener);
     }
     private final LocationListener mLocationListener = new LocationListener() {
-        ProgressDialog loading;
+
 
         @Override
         public void onLocationChanged(Location location) {
-            loading = ProgressDialog.show(form.this, "Mengirim...", "Wait...", false, false);
+
             System.out.println("onLocationChanged");
             mLastLocation = location;
             editTextlokasiLAT.setText(String.valueOf(location.getLatitude()));
             editTextlokasiLONG.setText(String.valueOf(location.getLongitude()));
-            loading.dismiss();
+
         }
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {

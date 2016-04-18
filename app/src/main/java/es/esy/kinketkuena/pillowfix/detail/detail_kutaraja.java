@@ -3,7 +3,6 @@ package es.esy.kinketkuena.pillowfix.detail;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,8 +18,6 @@ import es.esy.kinketkuena.pillowfix.Maps;
 import es.esy.kinketkuena.pillowfix.R;
 import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
-
-import es.esy.kinketkuena.pillowfix.R;
 
 public class detail_kutaraja extends Activity {
     private TextView editTextid;

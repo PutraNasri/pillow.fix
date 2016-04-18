@@ -3,15 +3,17 @@ package es.esy.kinketkuena.pillowfix.detail;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +36,7 @@ public class detail_syahkuala extends Activity {
     String lokasiLAT="";
     String lokasiLONG="";
     String name="";
+    String nohp="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,7 @@ public class detail_syahkuala extends Activity {
             String foto = c.getString(config.TAG_FOTO);
             name = c.getString(config.TAG_NAME);
             String pemilik = c.getString(config.TAG_DESG);
-            String nohp = c.getString(config.TAG_SAL);
+            nohp = c.getString(config.TAG_SAL);
             String nik = c.getString(config.TAG_NIK);
             String deskripsi = c.getString(config.TAG_DESKRIPSI);
             String harga = c.getString(config.TAG_HARGA);
@@ -108,20 +111,15 @@ public class detail_syahkuala extends Activity {
             image.setImageBitmap(bmimage);
             editTextnamakost.setText(name);
             editTextnamapemilik.setText(pemilik);
-            editTextnohp.setText(nohp);
+            //editTextnohp.setText(nohp);
             editTextharga.setText("Rp "+harga+" Per "+jangka);
             editTextalamat.setText(alamat);
             editTextdeskripsi.setText(deskripsi);
 
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-
-
     public void maps(View view)  {
         Intent intent = new Intent(this, Maps.class);
         intent.putExtra("nama",name);
@@ -130,5 +128,30 @@ public class detail_syahkuala extends Activity {
         startActivity(intent);
     }
 
+    public  void  call (View view){
+        dialContactPhone(nohp);
+    }
+    private void dialContactPhone(final String phoneNumber) {
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
+    }
+    public void sms (View view){
+        Log.i("Send SMS", "");
+        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+
+        smsIntent.setData(Uri.parse("smsto:"));
+        smsIntent.setType("vnd.android-dir/mms-sms");
+        smsIntent.putExtra("address"  , new String (nohp));
+        smsIntent.putExtra("sms_body"  , "");
+
+        try {
+            startActivity(smsIntent);
+            finish();
+            Log.i("Finished sending SMS...", "");
+        }
+        catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(detail_syahkuala.this,
+                    "SMS faild, please try again later.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
