@@ -42,10 +42,14 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
+import es.esy.kinketkuena.pillowfix.MainActivity;
 import es.esy.kinketkuena.pillowfix.R;
 import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
+import es.esy.kinketkuena.pillowfix.list.list_bandaraya;
 
 public class form extends Activity implements GoogleApiClient.ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
@@ -72,6 +76,7 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         Button clik = (Button) findViewById(R.id.cokfoto);
+
         if (!hasCamera()) {
             clik.setEnabled(true);
         }
@@ -88,10 +93,10 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
         spinnerdaerah = (Spinner) findViewById(R.id.spinnerdaerah);
         List<String> item = new ArrayList<String>();
         item.add("Letak Daerah Kost");
-        item.add("Syah kuala");
+        item.add("Syiah kuala");
         item.add("Banda raya");
         item.add("Meuraxa");
-        item.add("Ule kareng");
+        item.add("Uleee kareng");
         item.add("Lueng bata");
         item.add("Kuta raja");
         item.add("Jaya baru");
@@ -100,6 +105,9 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(form.this, android.R.layout.simple_spinner_dropdown_item, item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerdaerah.setAdapter(adapter);
+
+        coklokasi();
+
     }
 
     //Adding an employee
@@ -129,7 +137,7 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(form.this, "Mengirim...", "Wait...", false, false);
+                loading = ProgressDialog.show(form.this, "Mengirim...", "HARAP TUNGGU...", false, false);
             }
 
             @Override
@@ -137,10 +145,12 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(form.this, s, Toast.LENGTH_LONG).show();
+
             }
 
             @Override
             protected String doInBackground(Void... v) {
+
                 HashMap<String, String> params = new HashMap<>();
                 params.put(config.KEY_EMP_NAME, namakost);
                 params.put(config.KEY_EMP_DESG, namapemilik);
@@ -162,8 +172,129 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
         }
         AddEmployee ae = new AddEmployee();
         ae.execute();
+
+
     }
 
+    public boolean hasCamera() {
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+    }
+
+    public void cokfotoile(View v) {
+        Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(i, REQUEST_CAPTURE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CAPTURE && requestCode == RESULT_OK) ;
+        {
+            Bundle extras = data.getExtras();
+            Bitmap photo = (Bitmap) extras.get("data");
+            imageViewfoto.setImageBitmap(photo);
+        }
+    }
+
+    public  void coklokasi(View v){
+        coklokasi();
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("GPS");
+        progress.setMessage("Mengambil Lokasi...");
+        progress.show();
+
+        Runnable progressRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                progress.cancel();
+            }
+        };
+
+        Handler pdCanceller = new Handler() {
+            @Override
+            public void close() {
+
+            }
+
+            @Override
+            public void flush() {
+
+            }
+
+            @Override
+            public void publish(LogRecord record) {
+
+            }
+        };
+        v.postDelayed(progressRunnable, 10000);
+    }
+
+
+
+    public void coklokasi() {
+//proses pengambilan lokasi gps
+
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,35000, 10, mLocationListener);
+
+    }
+    private final LocationListener mLocationListener = new LocationListener() {
+
+        @Override
+        public void onLocationChanged(Location location) {
+
+            System.out.println("onLocationChanged");
+            mLastLocation = location;
+            editTextlokasiLAT.setText(String.valueOf(location.getLatitude()));
+            editTextlokasiLONG.setText(String.valueOf(location.getLongitude()));
+
+        }
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+            System.out.println("onStatusChanged");
+        }
+        @Override
+        public void onProviderEnabled(String provider) {
+            System.out.println("onProviderEnabled");
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+            System.out.println("onProvidermati");
+        }
+    };
+    //////////////////////////////////////////////////////////////////
+    @Override
+    public void onConnected(Bundle bundle) {
+    }
+    @Override
+    public void onConnectionSuspended(int i) {
+    }
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+    }
+    @Override
+    public void onLocationChanged(Location location) {
+    }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
+    @Override
+    public void onProviderEnabled(String provider) {
+    }
+    @Override
+    public void onProviderDisabled(String provider) {
+    }
     public void onClick(View v) {
         //pengeceka nanti di buat disini
 
@@ -297,6 +428,7 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
             AlertDialog alert = a_builder.create();
             alert.setTitle("Info");
             alert.show();
+
         } else if (editTextlokasiLAT.getText().toString().equals("")) {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
             a_builder.setMessage("Anda belum mengambil lokasi")
@@ -310,97 +442,32 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
             AlertDialog alert = a_builder.create();
             alert.setTitle("Info");
             alert.show();
+
+
         } else {
             addEmployee();
-        }
-
-    }
-
-    public boolean hasCamera() {
-        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
-    }
-
-    public void cokfotoile(View v) {
-        Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(i, REQUEST_CAPTURE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CAPTURE && requestCode == RESULT_OK) ;
-        {
-            Bundle extras = data.getExtras();
-            Bitmap photo = (Bitmap) extras.get("data");
-            imageViewfoto.setImageBitmap(photo);
-        }
-    }
-
-    public void coklokasi(View v) {
-//proses pengambilan lokasi gps
-
-        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,35000, 10, mLocationListener);
-    }
-    private final LocationListener mLocationListener = new LocationListener() {
+/*
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
+            a_builder.setMessage("Terima Kasih Telah Bergabung, ")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            Intent hasilIntent = new Intent(form.this, MainActivity.class);
+                            startActivity(hasilIntent);
+                            finish();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Info");
+            alert.show();
 
 
-        @Override
-        public void onLocationChanged(Location location) {
+            */
 
-            System.out.println("onLocationChanged");
-            mLastLocation = location;
-            editTextlokasiLAT.setText(String.valueOf(location.getLatitude()));
-            editTextlokasiLONG.setText(String.valueOf(location.getLongitude()));
+
 
         }
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-            System.out.println("onStatusChanged");
-        }
-        @Override
-        public void onProviderEnabled(String provider) {
-            System.out.println("onProviderEnabled");
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-            System.out.println("onProvidermati");
-        }
-
-
-    };
-    //////////////////////////////////////////////////////////////////
-    @Override
-    public void onConnected(Bundle bundle) {
     }
-    @Override
-    public void onConnectionSuspended(int i) {
-    }
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-    }
-    @Override
-    public void onLocationChanged(Location location) {
-    }
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-    }
-    @Override
-    public void onProviderEnabled(String provider) {
-    }
-    @Override
-    public void onProviderDisabled(String provider) {
-    }
-
-
 }

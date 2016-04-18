@@ -90,9 +90,9 @@ public class home extends Fragment {
         });
         bandaraya.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), list_bandaraya.class);
+            public void onClick(View v) {Intent intent = new Intent(getActivity(), list_bandaraya.class);
                 startActivity(intent);
+
             }
         });
         return rootview;
