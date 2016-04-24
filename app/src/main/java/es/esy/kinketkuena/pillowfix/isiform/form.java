@@ -428,7 +428,7 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
             AlertDialog alert = a_builder.create();
             alert.setTitle("Info");
             alert.show();
-
+/*
         } else if (editTextlokasiLAT.getText().toString().equals("")) {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(form.this);
             a_builder.setMessage("Anda belum mengambil lokasi")
@@ -443,7 +443,7 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
             alert.setTitle("Info");
             alert.show();
 
-
+*/
         } else {
             addEmployee();
 /*

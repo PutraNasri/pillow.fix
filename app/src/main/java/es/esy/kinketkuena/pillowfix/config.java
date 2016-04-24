@@ -14,25 +14,25 @@ public class config {
     public static final String URL_GET_EMP = "http://kinketkuena.esy.es/getEmp.php?id=";
     //kutaraja
     public static final String URL_GET_ALL_KUTARAJA="http://kinketkuena.esy.es/getAllKutaraja.php";
-    public static final String URL_GET_KUTARAJA="http://kinketkuena.esy.es/getKutaraja.php";
+    public static final String URL_GET_KUTARAJA="http://kinketkuena.esy.es/getKutaraja.php?id=";
     //ulekareng
     public static final String URL_GET_ALL_ULEKARENG="http://kinketkuena.esy.es/getAllUlekareng.php";
-    public static final String URL_GET_ULEKARENG="http://kinketkuena.esy.es/getUlekareng.php";
+    public static final String URL_GET_ULEKARENG="http://kinketkuena.esy.es/getUlekareng.php?id=";
     //bandaraya
     public static final String URL_GET_ALL_BANDARAYA="http://kinketkuena.esy.es/getAllBandaraya.php";
-    public static final String URL_GET_BANDARAYA="http://kinketkuena.esy.es/getBandaraya.php";
+    public static final String URL_GET_BANDARAYA="http://kinketkuena.esy.es/getBandaraya.php?id=";
     //jayabaru
     public static final String URL_GET_ALL_JAYABARU="http://kinketkuena.esy.es/getAllJayabaru.php";
-    public static final String URL_GET_JAYABARU="http://kinketkuena.esy.es/getJayabaru.php";
+    public static final String URL_GET_JAYABARU="http://kinketkuena.esy.es/getJayabaru.php?id=";
     //kutaalam
     public static final String URL_GET_ALL_KUTAALAM="http://kinketkuena.esy.es/getAllKutaalam.php";
-    public static final String URL_GET_KUTAALAM="http://kinketkuena.esy.es/getKutaalam.php";
+    public static final String URL_GET_KUTAALAM="http://kinketkuena.esy.es/getKutaalam.php?id=";
     //luengbata
     public static final String URL_GET_ALL_LUENGBATA="http://kinketkuena.esy.es/getAllLuengbata.php";
-    public static final String URL_GET_LUENGBATA="http://kinketkuena.esy.es/getLuengbata.php";
+    public static final String URL_GET_LUENGBATA="http://kinketkuena.esy.es/getLuengbata.php?id=";
     //meuraxa
     public static final String URL_GET_ALL_MEURAXA="http://kinketkuena.esy.es/getAllMeuraxa.php";
-    public static final String URL_GET_MEURAXA="http://kinketkuena.esy.es/getMeuraxa.php";
+    public static final String URL_GET_MEURAXA="http://kinketkuena.esy.es/getMeuraxa.php?id=";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,5 +74,9 @@ public class config {
 
     //employee id untuk di gunakan membuka halaman intent lain
     public static final String EMP_ID = "emp_id";
+    public static final String EMP_ID_meuraxa = "emp_id";
     public static final String EMP_LOKASI = "emp_lokasi";
+
+
+
 }
