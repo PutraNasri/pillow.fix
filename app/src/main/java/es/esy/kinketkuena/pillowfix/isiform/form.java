@@ -96,7 +96,7 @@ public class form extends Activity implements GoogleApiClient.ConnectionCallback
         item.add("Syiah kuala");
         item.add("Banda raya");
         item.add("Meuraxa");
-        item.add("Uleee kareng");
+        item.add("Ulee kareng");
         item.add("Lueng bata");
         item.add("Kuta raja");
         item.add("Jaya baru");
