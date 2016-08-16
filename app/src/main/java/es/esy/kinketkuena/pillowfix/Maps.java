@@ -48,7 +48,6 @@ public class Maps extends Activity implements OnMapReadyCallback {
         String lokasilat = intent.getStringExtra("loklat");
         String lokasilong = intent.getStringExtra("loklong");
 
-
         Double lok1 = Double.parseDouble(lokasilat);
         Double lok2 = Double.parseDouble(lokasilong);
         MapFragment mapFragment = (MapFragment) getFragmentManager()
@@ -161,4 +160,5 @@ public class Maps extends Activity implements OnMapReadyCallback {
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
 }
