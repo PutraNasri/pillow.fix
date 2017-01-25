@@ -68,6 +68,7 @@ public class list_jayabaru extends Activity implements ListView.OnItemClickListe
         GetJSON gj = new GetJSON();
         gj.execute();
     }
+
     private void showEmployee(){
 
         JSONObject jsonObject = null;
@@ -111,7 +112,7 @@ public class list_jayabaru extends Activity implements ListView.OnItemClickListe
         intent.putExtra(config.EMP_ID,empId);
         startActivity(intent);
     }
-
+//
     //public void refles(View view) {
     //  getJSON();
     //}

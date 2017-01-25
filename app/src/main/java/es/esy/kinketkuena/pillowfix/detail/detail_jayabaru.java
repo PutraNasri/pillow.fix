@@ -22,7 +22,6 @@ import es.esy.kinketkuena.pillowfix.R;
 import es.esy.kinketkuena.pillowfix.RequestHandler;
 import es.esy.kinketkuena.pillowfix.config;
 
-
 public class detail_jayabaru extends Activity {
     private TextView editTextid;
     private TextView editTextnamakost;
