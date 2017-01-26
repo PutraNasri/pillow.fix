@@ -40,7 +40,7 @@ public class all extends Fragment  {
 
     public all() {
     }
-
+//gfg
     GoogleMap gMaps;
     private GoogleApiClient client;
     private String JSON_STRING;
